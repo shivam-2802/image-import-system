@@ -94,7 +94,7 @@ def uploader_loop():
         mime_type = task["mime_type"]
         size = task["size"]
 
-        print(f"⬇Processing {name}")
+        print(f"Processing {name}")
 
         # Stream upload
         stream_drive_file_to_minio(
@@ -110,8 +110,7 @@ def uploader_loop():
             "mime_type": mime_type,
             "size": size,
             "storage_path": f"s3://{MINIO_BUCKET}/{name}",
-            "source": "google_drive",
-            "source_id": file_id
+            "google_drive_id": file_id
         }
 
         redis_client.rpush(METADATA_QUEUE, json.dumps(metadata))
