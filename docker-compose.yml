@@ -32,6 +32,43 @@ services:
     volumes:
       - minio_data:/data
 
+  api:
+    build: ./api-service
+    container_name: api_service
+    env_file:
+      - api-service/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - postgres
+
+  crawler:
+    build: ./crawler-worker
+    container_name: crawler_worker
+    env_file:
+      - crawler-worker/.env
+    depends_on:
+      - redis
+
+  uploader:
+    build: ./uploader-worker
+    container_name: uploader_worker
+    env_file:
+      - uploader-worker/.env
+    depends_on:
+      - redis
+      - minio
+
+  metadata:
+    build: ./metadata-worker
+    container_name: metadata_worker
+    env_file:
+      - metadata-worker/.env
+    depends_on:
+      - redis
+      - postgres
+
 volumes:
   postgres_data:
   minio_data:

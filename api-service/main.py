@@ -5,6 +5,7 @@ import psycopg2
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
@@ -112,3 +113,9 @@ def get_images():
         })
 
     return images
+
+app.mount(
+    "/",
+    StaticFiles(directory="frontend", html=True),
+    name="frontend"
+)

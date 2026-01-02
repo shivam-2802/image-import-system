@@ -1,5 +1,3 @@
-const API_BASE = "http://localhost:8000";
-
 async function importImages() {
   const input = document.getElementById("folderUrl");
   const folderUrl = input.value.trim();
@@ -9,7 +7,7 @@ async function importImages() {
     return;
   }
 
-  await fetch(`${API_BASE}/import/google-drive`, {
+  await fetch("/import/google-drive", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -18,12 +16,11 @@ async function importImages() {
   });
 
   alert("Import started");
-
   input.value = "";
 }
 
 async function loadImages() {
-  const response = await fetch(`${API_BASE}/images`);
+  const response = await fetch("/images");
   const images = await response.json();
 
   const gallery = document.getElementById("gallery");
