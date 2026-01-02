@@ -32,7 +32,7 @@ def crawler_loop():
     print("Crawler worker started. Waiting for folder tasks...")
 
     while True:
-        result = r.blpop(FOLDER_QUEUE, timeout=5)
+        result = r.blpop(FOLDER_QUEUE, timeout=25)
 
         if result is None:
             print("No folder tasks. Exiting crawler.")

@@ -5,6 +5,7 @@ import psycopg2
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
@@ -41,6 +42,14 @@ db_conn = psycopg2.connect(
 
 # App
 app = FastAPI(title="Image Import API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Schemas
 class ImportRequest(BaseModel):

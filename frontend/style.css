@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .form-container {
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: 400px;
+    padding: 8px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  

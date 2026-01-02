@@ -79,7 +79,7 @@ def uploader_loop():
 
     while True:
         # Blocking pop
-        result = redis_client.blpop(FILE_TASKS_QUEUE, timeout=5)
+        result = redis_client.blpop(FILE_TASKS_QUEUE, timeout=25)
 
         if result is None:
             print("No more tasks. Shutting down uploader.")
