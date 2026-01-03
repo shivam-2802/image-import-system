@@ -45,13 +45,7 @@ def metadata_worker_loop():
     print("Metadata worker started. Waiting for tasks...")
 
     while True:
-        result = redis_client.blpop(METADATA_QUEUE, timeout=25)
-
-        if result is None:
-            print("No metadata tasks.")
-            break
-
-        _, task_json = result
+        _, task_json = redis_client.blpop(METADATA_QUEUE)
         task = json.loads(task_json)
 
         print(f"Saving metadata for {task['name']}")
