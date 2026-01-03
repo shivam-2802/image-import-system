@@ -29,10 +29,9 @@ async function loadImages() {
   images.forEach(img => {
     const imageEl = document.createElement("img");
     imageEl.src = img.url;
+    imageEl.loading = "lazy";
     imageEl.alt = img.name;
     gallery.appendChild(imageEl);
   });
 }
 
-
-loadImages();
